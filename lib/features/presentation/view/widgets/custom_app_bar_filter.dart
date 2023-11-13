@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotel_task/core/styles/app_styles.dart';
 
 import 'package:hotel_task/features/presentation/view/screens/filter_screen.dart';
 
@@ -46,10 +47,17 @@ class CustomAppBarFilter extends StatelessWidget {
                 },
               );
             },
-            child: const Row(
+            child: Row(
               children: [
-                Text('Filters'),
-                Icon(Icons.filter_list),
+                const Icon(
+                  Icons.filter_list,
+                  color: Colors.blue,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Filters',
+                  style: Styles.style16.copyWith(color: Colors.blue),
+                ),
               ],
             ),
           ),
@@ -68,10 +76,21 @@ class CustomAppBarFilter extends StatelessWidget {
                 },
               );
             },
-            child: const Row(
+            child: Row(
               children: [
-                Text('Sort'),
-                Icon(Icons.sort),
+                const Icon(
+                  Icons.sort,
+                  color: Colors.blue,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Sort',
+                  style: Styles.style16.copyWith(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                    decorationColor: Colors.blue,
+                  ),
+                ),
               ],
             ),
           )
