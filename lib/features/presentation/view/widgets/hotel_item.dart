@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/styles/app_styles.dart';
 import '../../../data/model/hotel_model.dart';
@@ -16,7 +17,7 @@ class HotelItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 450,
+      height: 365.h,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       decoration: BoxDecoration(
         boxShadow: [
@@ -42,7 +43,7 @@ class HotelItem extends StatelessWidget {
             child: Image.network(
               hotelModel.image,
               fit: BoxFit.cover,
-              height: 200,
+              height: 150.h,
               width: double.infinity,
 
               // width: double.infinity,

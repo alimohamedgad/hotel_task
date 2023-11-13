@@ -39,7 +39,26 @@ class HotelCubit extends Cubit<HotelState> {
   double sliderValue = 20.0;
 
 
-  num numberOfRating = 1;
+  num numberOfRating = 0;
+
+
+  reset() {
+
+    numberOfRating = 0;
+
+
+    sliderValue = 20.0;
+
+
+    numberOfStar = 1;
+
+
+    currentIndex = 0;
+
+
+    emit(ResetAllValue());
+
+  }
 
 
   void updateSliderValue(double value) {
@@ -47,14 +66,14 @@ class HotelCubit extends Cubit<HotelState> {
     sliderValue = value;
 
 
-    emit(UpdateStartIndex());
+    emit(UpdateStartIndexState());
 
   }
 
 
   getHotel() async {
 
-    emit(GetHotelLoading());
+    emit(GetHotelLoadingState());
 
 
     hotelDataSource.getHotel().then((hotelList) {
@@ -62,11 +81,11 @@ class HotelCubit extends Cubit<HotelState> {
       hotels = hotelList;
 
 
-      emit(GetHotelSuccess());
+      emit(GetHotelSuccessState());
 
     }).catchError((e) {
 
-      emit(UpdateStartIndex());
+      emit(UpdateStartIndexState());
 
 
       log(e.toString());
@@ -76,7 +95,33 @@ class HotelCubit extends Cubit<HotelState> {
   }
 
 
-  int numberOfStar = 1;
+  int numberOfStar = 0;
+
+
+  int currentIndex = 0;
+
+
+  updateCurrentIndex(int index) {
+
+    currentIndex = index;
+
+
+    emit(UpdateCurrentIndexOfSortState());
+
+  }
+
+
+  bool ascendingHotels = true;
+
+
+  updateSort() {
+
+    ascendingHotels = !ascendingHotels;
+
+
+    emit(UpdateSortHotelState());
+
+  }
 
 
   updateNumberOfStar(int newIndex) {
@@ -84,7 +129,7 @@ class HotelCubit extends Cubit<HotelState> {
     numberOfStar = newIndex;
 
 
-    emit(UpdateStartIndex());
+    emit(UpdateStartIndexState());
 
   }
 
@@ -108,6 +153,16 @@ class HotelCubit extends Cubit<HotelState> {
         )
 
         .toList();
+
+  }
+
+
+  void sortHotelsByPrice(List<HotelModel> hotels) {
+
+    List<HotelModel> sortedHotels = List.from(hotels);
+
+
+    sortedHotels.sort((a, b) => a.price.compareTo(b.price));
 
   }
 

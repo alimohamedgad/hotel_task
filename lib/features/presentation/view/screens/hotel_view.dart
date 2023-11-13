@@ -19,7 +19,7 @@ class HotelView extends StatelessWidget {
         extendBody: true,
         backgroundColor: Colors.white,
         bottomNavigationBar: const BottomNavGoogleMap(),
-        body: HotelBody(filterList: filterList ?? []),
+        body: HotelBody(filterHotelList: filterList ?? []),
       ),
     );
   }

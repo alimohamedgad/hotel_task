@@ -23,14 +23,11 @@ class FilterButtonResult extends StatelessWidget {
             hotelCubit.numberOfRating,
             hotelCubit.numberOfStar,
           );
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return HotelView(filterList: filterList);
-              },
-            ),
-          );
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+            builder: (context) {
+              return HotelView(filterList: filterList);
+            },
+          ), (route) => false);
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.blue,

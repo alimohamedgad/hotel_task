@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:hotel_task/features/presentation/view/screens/google_map_Screen.dart';
 
 import '../../../../core/app_image/app_image.dart';
+import 'google_map_screen.dart';
 
 class BottomNavGoogleMap extends StatefulWidget {
   const BottomNavGoogleMap({

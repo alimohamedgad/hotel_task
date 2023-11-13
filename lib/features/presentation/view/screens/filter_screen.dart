@@ -5,12 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hotel_task/core/styles/app_styles.dart';
 import 'package:hotel_task/features/presentation/hotel_cubit/hotel_cubit.dart';
 import '../widgets/fitler_widgets/filter_button_result.dart';
+import '../widgets/fitler_widgets/price_per_night.dart';
 import '../widgets/fitler_widgets/rating_list.dart';
 import '../widgets/fitler_widgets/start_hotel_class.dart';
 
-class FilterModalBottomSheet extends StatelessWidget {
+class FilterModalBottomSheet extends StatefulWidget {
   const FilterModalBottomSheet({super.key});
 
+  @override
+  State<FilterModalBottomSheet> createState() => _FilterModalBottomSheetState();
+}
+
+class _FilterModalBottomSheetState extends State<FilterModalBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HotelCubit, HotelState>(
@@ -19,23 +25,24 @@ class FilterModalBottomSheet extends StatelessWidget {
         return ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              padding: const EdgeInsets.only(left: 15, right: 10, top: 10),
               child: Row(
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Reset',
-                    style: Styles.style14
-                        .copyWith(decoration: TextDecoration.underline),
-                  ),
-                  const Text(
-                    'Filter ',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      hotelCubit.reset();
+                    },
+                    child: Text(
+                      'Reset',
+                      style: Styles.style16.copyWith(
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.grey.withOpacity(0.8),
+                          color: Colors.grey.withOpacity(0.8)),
                     ),
                   ),
+                  Text('Filter ', style: Styles.style20),
                   IconButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -50,25 +57,7 @@ class FilterModalBottomSheet extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Text(
-                        'price per night'.toUpperCase(),
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const Spacer(),
-                      Container(
-                        padding: const EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(),
-                        ),
-                        child: const Text('540+ \$'),
-                      )
-                    ],
-                  ),
+                  const PricePerNight(),
                   const SizedBox(height: 10),
                   Slider(
                     value: hotelCubit.sliderValue,
@@ -109,19 +98,19 @@ class FilterModalBottomSheet extends StatelessWidget {
               ),
             ),
             const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Hotel Class',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  StarRatingList(hotelCubit: hotelCubit)
+                  SizedBox(height: 10),
+                  StarRatingList()
                 ],
               ),
             ),

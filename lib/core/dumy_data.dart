@@ -22,3 +22,12 @@ List colors = [
   Colors.green.shade500,
   Colors.green[900],
 ];
+List<String> sortByList = [
+  'Our recommendation',
+  'Rating & Recommended',
+  'Price & Recommended',
+  'Distance & Recommended',
+  'Rating only',
+  'Price only',
+  'Distance only'
+];

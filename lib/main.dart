@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hotel_task/core/service_locator/service_locator.dart';
 import 'package:hotel_task/features/presentation/view/screens/hotel_view.dart';
 import 'features/presentation/hotel_cubit/hotel_cubit.dart';
@@ -14,12 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => locator<HotelCubit>()..getHotel(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HotelView(),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) {
+        return BlocProvider(
+          create: (context) => locator<HotelCubit>()..getHotel(),
+          child: const MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: HotelView(),
+          ),
+        );
+      },
     );
   }
 }
